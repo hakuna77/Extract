@@ -17,17 +17,20 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Set up Environment
-      run: sudo apt-get update && sudo apt-get install -y unzip
+      run: sudo apt-get update && sudo apt-get install -y unzip tar xz-utils
 
     - name: Download Stock ROM
       # Replace with your actual ROM URL or path in the repo
-      run: wget -O stock_rom.zip "${{ github.event.inputs.rom_url }}"
+      run: wget -O stock_rom.tgz "${{ github.event.inputs.rom_url }}"
 
     - name: Extract Boot Image
       run: |
         mkdir extracted_rom
-        unzip stock_rom.zip -d extracted_rom
+        tar -xvzf stock_rom.tgz -C extracted_rom
         ls -lh extracted_rom
+    
+    - name: find file
+      run: |
         find extracted_rom -name "boot.img" -exec cp {} . \;
         find extracted_rom -name "vbmeta.img" -exec cp {} . \;
 
