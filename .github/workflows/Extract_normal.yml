@@ -27,6 +27,7 @@ jobs:
       run: |
         mkdir extracted_rom
         unzip stock_rom.zip -d extracted_rom
+        ls -lh extracted_rom
         find extracted_rom -name "boot.img" -exec cp {} . \;
         find extracted_rom -name "vbmeta.img" -exec cp {} . \;
 
