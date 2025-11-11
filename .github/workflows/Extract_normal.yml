@@ -33,6 +33,7 @@ jobs:
       run: |
         find extracted_rom -name "boot.img" -exec cp {} . \;
         find extracted_rom -name "vbmeta.img" -exec cp {} . \;
+        find extracted_rom -name "recovery.img" -exec cp {} . \;
 
     - name: Upload Boot Image Artifact
       uses: actions/upload-artifact@v4
@@ -41,4 +42,5 @@ jobs:
         path: |
           boot.img
           vbmeta.img
+          recovery.img
         
